@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: secure_pg
+    environment:
+      POSTGRES_USER: secureuser
+      POSTGRES_PASSWORD: securepass
+      POSTGRES_DB: securechat
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ~/Documents/lockbox-research/database:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
